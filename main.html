@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاعل مع الزر</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* تصميم الزر */
+        #actionButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 40px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        /* تأثير الإضاءة عند الضغط */
+        .glow {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+
+        /* النص الذي يظهر عند الضغط */
+        #welcomeText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: #00BFFF;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- زر التفاعل -->
+    <button id="actionButton">اضغط هنا</button>
+
+    <!-- نص يظهر عند التفاعل -->
+    <div id="welcomeText">أهلاً في موقعي</div>
+
+    <!-- إضافة الصوت -->
+    <audio id="xpSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+    <script>
+        // تحديد العناصر
+        const button = document.getElementById('actionButton');
+        const welcomeText = document.getElementById('welcomeText');
+        const xpSound = document.getElementById('xpSound');
+
+        // حدث عند الضغط على الزر
+        button.addEventListener('click', function() {
+            // إضافة تأثير الإضاءة
+            button.classList.add('glow');
+
+            // تشغيل الصوت
+            xpSound.play();
+
+            // إظهار النص
+            welcomeText.style.opacity = 1;
+
+            // إزالة تأثير الإضاءة بعد 1 ثانية
+            setTimeout(() => {
+                button.classList.remove('glow');
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
